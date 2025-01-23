@@ -70,10 +70,12 @@ use yii\widgets\ActiveForm;
 
     <div class="row">
         <div class="col-md-6">
+            <h1>Penanggung Pasien</h1>
             <?= $form->field($model, 'nama_penanggung')->textInput(['maxlength' => true]) ?>
             <?= $form->field($model, 'no_kartu')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col-md-6">
+            <br><br><br>
             <?= $form->field($model, 'berkas')->fileInput() ?>
         </div>
     </div>

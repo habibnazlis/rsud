@@ -40,8 +40,8 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
         'options' => ['class' => 'navbar-nav'],
         'items' => [
             ['label' => 'Home', 'visible' => !Yii::$app->user->isGuest, 'url' => ['/site/index']],
-            ['label' => 'Data', 'visible' => !Yii::$app->user->isGuest, 'url' => ['/pasien/index']],
-
+            ['label' => 'Data Pasien', 'visible' => !Yii::$app->user->isGuest, 'url' => ['/pasien/index']],
+            ['label' => 'Rawat Jalan', 'visible' => !Yii::$app->user->isGuest, 'url' => ['/rawat-jalan/index']],
             // ['label' => 'About', 'url' => ['/site/about']],
             // ['label' => 'Contact', 'url' => ['/site/contact']],
             ['label' => 'Registrasi', 'visible' => Yii::$app->user->isGuest, 'url' => ['/auth/register']], // Hanya tampilkan saat pengguna belum login
