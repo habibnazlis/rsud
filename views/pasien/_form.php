@@ -52,7 +52,7 @@ use yii\widgets\ActiveForm;
             <?= $form->field($model, 'kelurahan')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col-md-4">
-            <?= $form->field($model, 'marital_status')->dropDownList(['Belum Kawin' => 'Belum Kawin', 'Kawin' => 'Kawin'], ['prompt' => 'Pilih Status']) ?>
+            <?= $form->field($model, 'marital_status')->dropDownList(['Belum menikah' => 'Belum menikah', 'Menikah' => 'Menikah'], ['prompt' => 'Pilih Status']) ?>
         </div>
         <div class="col-md-4">
             <?= $form->field($model, 'riwayat_penyakit')->textarea(['rows' => 2]) ?>
@@ -70,12 +70,10 @@ use yii\widgets\ActiveForm;
 
     <div class="row">
         <div class="col-md-6">
-            <h1>Penanggung Pasien</h1>
             <?= $form->field($model, 'nama_penanggung')->textInput(['maxlength' => true]) ?>
             <?= $form->field($model, 'no_kartu')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col-md-6">
-            <br><br><br>
             <?= $form->field($model, 'berkas')->fileInput() ?>
         </div>
     </div>

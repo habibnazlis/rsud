@@ -58,6 +58,7 @@ class Program extends \yii\db\ActiveRecord
      */
     public function getRawatJalan()
     {
-        return $this->hasOne(RawatJalan::class, ['id' => 'rawat_jalan_id']);
+        return $this->belongsTo(RawatJalan::class, ['rawat_jalan_id' => 'id']);
+        // return $this->hasOne(RawatJalan::class, ['id' => 'rawat_jalan_id']);
     }
 }

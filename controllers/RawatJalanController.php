@@ -3,7 +3,7 @@
 namespace app\controllers;
 
 use Yii;
-
+use kartik\mpdf\Pdf;
 use app\models\RawatJalan;
 use app\models\RawatJalanSearch;
 use yii\web\Controller;
@@ -63,6 +63,8 @@ class RawatJalanController extends Controller
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'modelsProgram' => (empty($modelsProgram)) ? [new Program] : $modelsProgram
+
         ]);
     }
 
@@ -179,7 +181,9 @@ class RawatJalanController extends Controller
      */
     public function actionDelete($id)
     {
+        Program::deleteAll(['rawat_jalan_id' => $id]);
         $this->findModel($id)->delete();
+
 
         return $this->redirect(['index']);
     }
@@ -199,4 +203,75 @@ class RawatJalanController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+
+//     public function actionPrintPdf($id)
+// {
+//     // Ambil data dari database berdasarkan ID
+//     $data = Yii::$app->db->createCommand("SELECT * FROM form_kfr WHERE id=:id")
+//         ->bindValue(':id', $id)
+//         ->queryOne();
+
+//     if (!$data) {
+//         throw new \yii\web\NotFoundHttpException("Data dengan ID $id tidak ditemukan.");
+//     }
+
+//     try {
+//         // Inisialisasi mPDF
+//         $mpdf = new \Mpdf\Mpdf();
+
+//         // Render tampilan HTML untuk PDF
+//         $html = $this->renderPartial('print', ['data' => $data]);
+
+//         // Tambahkan konten ke mPDF
+//         $mpdf->WriteHTML($html);
+
+//         // Output file PDF (D: download, I: tampilkan di browser)
+//         $mpdf->Output('form-kfr.pdf', 'I');
+//     } catch (\Mpdf\MpdfException $e) {
+//         Yii::$app->session->setFlash('error', 'Terjadi kesalahan saat mencetak: ' . $e->getMessage());
+//         return $this->redirect(['index']);
+//     }
+// }
+
+    public function actionPrint($id) 
+    {
+        $model = $this->findModel($id);
+        $modelsProgram = $model->programs;
+        // get your HTML raw content without any layouts or scripts
+        $content = $this->renderPartial('print', [
+            'model' => $model,
+            'modelsProgram' => $modelsProgram
+
+        ]);
+    
+        // setup kartik\mpdf\Pdf component
+        $pdf = new Pdf([
+            // set to use core fonts only
+            'mode' => Pdf::MODE_CORE, 
+            // A4 paper format
+            'format' => Pdf::FORMAT_A4, 
+            // portrait orientation
+            'orientation' => Pdf::ORIENT_PORTRAIT, 
+            // stream to browser inline
+            'destination' => Pdf::DEST_BROWSER, 
+            // your html content input
+            'content' => $content,  
+            // format content from your own css file if needed or use the
+            // enhanced bootstrap css built by Krajee for mPDF formatting 
+            'cssFile' => '@vendor/kartik-v/yii2-mpdf/src/assets/kv-mpdf-bootstrap.min.css',
+            // any css to be embedded if required
+            'cssInline' => '.kv-heading-1{font-size:18px}', 
+            // set mPDF properties on the fly
+            'options' => ['title' => 'Rawat Jalan Pasien'],
+            // call mPDF methods on the fly
+            'methods' => [ 
+                'SetHeader'=>['Krajee Report Header'], 
+                'SetFooter'=>['{PAGENO}'],
+            ]
+        ]);
+        
+        // return the pdf output as per the destination setting
+        return $pdf->render(); 
+    }	
+
 }

@@ -50,11 +50,11 @@ class Pasien extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['no_rekam_medis', 'nama_pasien', 'jenis_kelamin', 'tgl_lahir'], 'required'],
+            [['no_rekam_medis', 'nama_pasien', 'jenis_kelamin', 'tgl_lahir', 'alamat', 'no_identitas', 'jenis_identitas', 'nama_penanggung', 'no_kartu','umur'], 'required'],
             [['tgl_lahir'], 'safe'],
-            [['umur'], 'integer'],
+            [['umur', 'no_rekam_medis', 'no_identitas', 'no_telp', 'no_kartu'], 'integer'],
             [['alamat', 'riwayat_penyakit', 'jenis_identitas'], 'string'],
-            [['no_rekam_medis', 'no_identitas', 'nama_pasien', 'tempat_lahir', 'agama', 'pendidikan', 'pekerjaan', 'kewarganegaraan', 'no_telp', 'provinsi', 'kabupaten', 'kecamatan', 'kelurahan', 'marital_status', 'nama_ayah', 'nama_ibu', 'nama_penanggung', 'no_kartu'], 'string', 'max' => 255],
+            [['nama_pasien', 'tempat_lahir', 'agama', 'pendidikan', 'pekerjaan', 'kewarganegaraan', 'provinsi', 'kabupaten', 'kecamatan', 'kelurahan', 'marital_status', 'nama_ayah', 'nama_ibu', 'nama_penanggung'], 'string', 'max' => 255],
             [['berkas'], 'file', 'extensions' => 'png, jpg, pdf, docx'],
         ];
     }
@@ -66,19 +66,19 @@ class Pasien extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'no_rekam_medis' => 'No Rekam Medis',
-            'no_identitas' => 'No Identitas',
+            'no_rekam_medis' => 'Nomor Rekam Medis',
+            'no_identitas' => 'Nomor Identitas',
             'jenis_identitas' => 'Jenis Identitas',
             'nama_pasien' => 'Nama Pasien',
             'tempat_lahir' => 'Tempat Lahir',
-            'tgl_lahir' => 'Tgl Lahir',
+            'tgl_lahir' => 'Tanggal Lahir',
             'umur' => 'Umur',
             'jenis_kelamin' => 'Jenis Kelamin',
             'agama' => 'Agama',
             'pendidikan' => 'Pendidikan',
             'pekerjaan' => 'Pekerjaan',
             'kewarganegaraan' => 'Kewarganegaraan',
-            'no_telp' => 'No Telp',
+            'no_telp' => 'Nomor Telpon',
             'alamat' => 'Alamat',
             'provinsi' => 'Provinsi',
             'kabupaten' => 'Kabupaten',

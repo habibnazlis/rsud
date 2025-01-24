@@ -24,13 +24,17 @@ $this->params['breadcrumbs'][] = $this->title;
                 'method' => 'post',
             ],
         ]) ?>
+        <?= Html::a('<i class="fa far fa-hand-point-up"></i> Print', 
+        ['print', 'id' => $model->id], 
+        ['class'=>'btn btn-danger', 'target'=>'_blank', 'data-toggle'=>'tooltip', 
+        'title'=>'Will open the generated PDF file in a new window']); ?>
     </p>
 
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
             'id',
-            'pasien_id',
+            'pasien.no_rekam_medis',
             'tgl_pelayanan',
             'anamnesis:ntext',
             'tindakan_uji_fungsi:ntext',

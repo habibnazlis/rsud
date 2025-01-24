@@ -55,7 +55,7 @@ class RawatJalan extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'pasien_id' => 'Pasien ID',
+            'pasien_id' => 'Nomor Rekam Medis',
             'tgl_pelayanan' => 'Tgl Pelayanan',
             'anamnesis' => 'Anamnesis',
             'tindakan_uji_fungsi' => 'Tindakan Uji Fungsi',

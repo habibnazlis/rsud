@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
 use wbraganca\dynamicform\DynamicFormWidget;
 
@@ -15,7 +16,11 @@ use wbraganca\dynamicform\DynamicFormWidget;
 
     <div class="row">
         <div class="col-md-6">
-            <?= $form->field($model, 'pasien_id')->textInput() ?>
+            <?php //$form->field($model, 'pasien_id')->textInput() ?>
+            <?php $dataList = ArrayHelper::map(\app\models\Pasien::find()->asArray()->all(), 'id', 'no_rekam_medis');
+            echo $form->field($model, 'pasien_id')->dropDownList($dataList);?>
+
+
 
             <?= $form->field($model, 'tgl_pelayanan')->input('date') ?>
 
@@ -81,7 +86,7 @@ use wbraganca\dynamicform\DynamicFormWidget;
                         <?php
                             // necessary for update action.
                             if (! $modelProgram->isNewRecord) {
-                                echo Html::activeHiddenInput($modelAddress, "[{$i}]id");
+                                echo Html::activeHiddenInput($modelProgram, "[{$i}]id");
                             }
                         ?>
                         <div class="row">
