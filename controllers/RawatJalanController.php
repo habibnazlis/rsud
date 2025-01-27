@@ -107,6 +107,15 @@ class RawatJalanController extends Controller
                     $transaction->rollBack();
                 }
             }
+            if (!$valid) {
+                // Menampilkan pesan kesalahan untuk model utama (RawatJalan)
+                var_dump($model->errors); // Menampilkan error untuk model RawatJalan
+                // Menampilkan pesan kesalahan untuk model terkait (Program)
+                echo "<br>";
+                echo " ";
+                echo "<br>";
+                var_dump($modelsProgram[0]->errors); // Menampilkan error untuk model Program pertama
+            }
         }
         else {    
 

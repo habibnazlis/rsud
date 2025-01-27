@@ -30,10 +30,11 @@ class Program extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['program', 'tgl_program'], 'required'],
+            [['tgl_program', 'program'], 'required'],
+            [['id', 'rawat_jalan_id'], 'integer'],
             [['tgl_program'], 'safe'],
-            [['rawat_jalan_id'], 'integer'],
             [['program'], 'string', 'max' => 250],
+            [['id'], 'unique'],
             [['rawat_jalan_id'], 'exist', 'skipOnError' => true, 'targetClass' => RawatJalan::class, 'targetAttribute' => ['rawat_jalan_id' => 'id']],
         ];
     }
@@ -58,7 +59,6 @@ class Program extends \yii\db\ActiveRecord
      */
     public function getRawatJalan()
     {
-        return $this->belongsTo(RawatJalan::class, ['rawat_jalan_id' => 'id']);
-        // return $this->hasOne(RawatJalan::class, ['id' => 'rawat_jalan_id']);
+        return $this->hasOne(RawatJalan::class, ['id' => 'rawat_jalan_id']);
     }
 }

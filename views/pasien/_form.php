@@ -28,7 +28,7 @@ use yii\widgets\ActiveForm;
         <div class="col-md-6">
             <?= $form->field($model, 'jenis_kelamin')->radioList(['Laki-laki' => 'Laki-laki', 'Perempuan' => 'Perempuan']) ?>
             <?= $form->field($model, 'agama')->dropDownList(['Islam' => 'Islam', 'Kristen' => 'Kristen', 'Hindu' => 'Hindu', 'Buddha' => 'Buddha'], ['prompt' => 'Pilih Agama']) ?>
-            <?= $form->field($model, 'pendidikan')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'pendidikan')->dropDownList(['SD' => 'SD', 'SMP' => 'SMP', 'SMA' => 'SMA', 'S1' => 'S1'], ['prompt' => 'Pilih Pendidikan']) ?>
             <?= $form->field($model, 'pekerjaan')->textInput(['maxlength' => true]) ?>
             <?= $form->field($model, 'kewarganegaraan')->textInput(['maxlength' => true]) ?>
             <?= $form->field($model, 'no_telp')->textInput(['maxlength' => true]) ?>

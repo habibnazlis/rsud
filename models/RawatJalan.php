@@ -40,9 +40,9 @@ class RawatJalan extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['pasien_id', 'tgl_pelayanan', 'anamnesis', 'tindakan_uji_fungsi', 'diagnosis_medis', 'diagnosis_fungsi', 'pemeriksaan_penunjang', 'tata_laksana_kfr', 'anjuran', 'evaluasi', 'suspek_akibat_kerja', 'permintaan_terapi'], 'required'],
             [['pasien_id'], 'integer'],
             [['tgl_pelayanan'], 'safe'],
+            [['anamnesis', 'tindakan_uji_fungsi', 'diagnosis_medis', 'diagnosis_fungsi', 'pemeriksaan_penunjang', 'tata_laksana_kfr', 'anjuran', 'evaluasi', 'suspek_akibat_kerja', 'permintaan_terapi', 'tgl_pelayanan'], 'required'],
             [['anamnesis', 'tindakan_uji_fungsi', 'diagnosis_medis', 'diagnosis_fungsi', 'pemeriksaan_penunjang', 'tata_laksana_kfr', 'anjuran', 'evaluasi', 'suspek_akibat_kerja', 'permintaan_terapi'], 'string'],
             [['pasien_id'], 'exist', 'skipOnError' => true, 'targetClass' => Pasien::class, 'targetAttribute' => ['pasien_id' => 'id']],
         ];
@@ -55,7 +55,7 @@ class RawatJalan extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'pasien_id' => 'Nomor Rekam Medis',
+            'pasien_id' => 'Pasien ID',
             'tgl_pelayanan' => 'Tgl Pelayanan',
             'anamnesis' => 'Anamnesis',
             'tindakan_uji_fungsi' => 'Tindakan Uji Fungsi',
